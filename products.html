@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products | Streetwear Shop</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <table>
@@ -14,151 +14,155 @@
       <th>Product Views</th>
       <th>Product Details</th>
       <th>Price</th>
+      <th>Action</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="main-table-body">
     <!-- Product 01: Jorts -->
     <tr>
       <td>01</td>
       <td>
         <div class="img-wrapper">
           <img src="WhatsApp Image 2026-02-13 at 10.11.32 AM (2).jpeg" alt="Jorts Front" class="product-img-large">
-          <img src="WhatsApp Image 2026-02-13 at 10.11.38 AM (1).jpeg" alt="Jorts Back" class="product-img-large">
         </div>
       </td>
       <td><strong>Jorts</strong><br><small>Classic Denim Style</small></td>
       <td>Ksh 1500</td>
+      <td><button class="purchase-btn" onclick="startPayment(1500, 'Jorts')">Buy via M-Pesa</button></td>
     </tr>
+
      <!-- Product 02: Cova tee -->
     <tr>
       <td>02</td>
       <td>
         <div class="img-wrapper">
-          <img src="WhatsApp Image 2026-02-16 at 2.09.10 PM (1).jpeg" alt="t-shirt front"class="product-img-large">
-          <img src="WhatsApp Image 2026-02-16 at 2.09.10 PM.jpeg" alt="t-shirt Back" class="product-img-large">
+          <img src="WhatsApp Image 2026-02-16 at 2.09.10 PM (1).jpeg" alt="t-shirt front" class="product-img-large">
         </div>
       </td>
       <td><strong>Cova Tee</strong><br><small>Premium cotton graphic tee</small></td>
       <td>Ksh 1200</td>
+      <td><button class="purchase-btn" onclick="startPayment(1200, 'Cova Tee')">Buy via M-Pesa</button></td>
     </tr>
+
      <!-- Product 03: Crop top -->
     <tr>
       <td>03</td>
       <td>
         <div class="img-wrapper">
           <img src="WhatsApp Image 2026-02-13 at 10.11.42 AM (1).jpeg" alt="crop top Front" class="product-img-large">
-          <img src="WhatsApp Image 2026-02-13 at 10.11.48 AM.jpeg" alt="crop top Back" class="product-img-large">
         </div>
       </td>
       <td><strong>Crop top</strong><br><small>Slim fit summer wear</small></td>
       <td>Ksh 800</td>
+      <td><button class="purchase-btn" onclick="startPayment(800, 'Crop top')">Buy via M-Pesa</button></td>
     </tr>
+
      <!-- Product 04: Skull Caps -->
     <tr>
       <td>04</td>
       <td>
         <div class="img-wrapper">
           <img src="WhatsApp Image 2026-02-13 at 10.11.35 AM.jpeg" alt="skull cap Front" class="product-img-large">
-          <img src="YOUR_SECOND_IMAGE_HERE.jpg" alt="skull cap Back" class="product-img-large">
         </div>
       </td>
       <td><strong>Skull caps</strong><br><small>Knitted streetwear beanies</small></td>
       <td>Ksh 650</td>
+      <td><button class="purchase-btn" onclick="startPayment(650, 'Skull caps')">Buy via M-Pesa</button></td>
     </tr>
+
      <!-- Product 05: Polo Tee -->
     <tr>
       <td>05</td>
       <td>
         <div class="img-wrapper">
           <img src="WhatsApp Image 2026-02-16 at 4.46.35 PM.jpeg" alt="Polo Tee Front" class="product-img-large">
-          <img src="WhatsApp Image 2026-02-16 at 4.46.36 PM.jpeg" alt="polo tee Back" class="product-img-large">
         </div>
       </td>
       <td><strong>Polo Tee</strong><br><small>Athletic Performance tee</small></td>
       <td>Ksh 2000</td>
+      <td><button class="purchase-btn" onclick="startPayment(2000, 'Polo Tee')">Buy via M-Pesa</button></td>
     </tr>
+
      <!-- Product 06: Sweat Pants -->
     <tr>
       <td>06</td>
       <td>
         <div class="img-wrapper">
           <img src="WhatsApp Image 2026-02-16 at 2.09.02 PM (1).jpeg" alt="sweat pants Front" class="product-img-large">
-          <img src="WhatsApp Image 2026-02-16 at 2.09.02 PM.jpeg" alt="sweat pants Back" class="product-img-large">
         </div>
       </td>
       <td><strong>Sweat pants</strong><br><small>Heavyweight fleece lounge</small></td>
       <td>Ksh 1700</td>
+      <td><button class="purchase-btn" onclick="startPayment(1700, 'Sweat pants')">Buy via M-Pesa</button></td>
     </tr>
+
      <!-- Product 07: Joggers -->
     <tr>
       <td>07</td>
       <td>
         <div class="img-wrapper">
           <img src="WhatsApp Image 2026-02-13 at 10.11.40 AM.jpeg" alt="joggers Front" class="product-img-large">
-          <img src="WhatsApp Image 2026-02-13 at 10.11.41 AM.jpeg" alt="Joggers Back" class="product-img-large">
         </div>
       </td>
       <td><strong>Joggers</strong><br><small>Tapered urban tracksuit</small></td>
       <td>Ksh 1700</td>
+      <td><button class="purchase-btn" onclick="startPayment(1700, 'Joggers')">Buy via M-Pesa</button></td>
     </tr>
+
      <!-- Product 08: Hoodie -->
     <tr>
       <td>08</td>
       <td>
         <div class="img-wrapper">
           <img src="WhatsApp Image 2026-02-16 at 2.08.53 PM (2).jpeg" alt="Hoodie Front" class="product-img-large">
-          <img src="WhatsApp Image 2026-02-16 at 2.08.53 PM.jpeg" alt="Hoodie Back" class="product-img-large">
         </div>
       </td>
       <td><strong>Hoodie</strong><br><small>Oversized comfort fit</small></td>
       <td>Ksh 2000</td>
+      <td><button class="purchase-btn" onclick="startPayment(2000, 'Hoodie')">Buy via M-Pesa</button></td>
     </tr>
+
      <!-- Product 09: Zip-up -->
     <tr>
       <td>09</td>
       <td>
         <div class="img-wrapper">
           <img src="WhatsApp Image 2026-02-16 at 2.08.52 PM.jpeg" alt="Zip-up Front" class="product-img-large">
-          <img src="WhatsApp Image 2026-02-13 at 10.11.47 AM.jpeg" alt="Zip-up Back" class="product-img-large">
         </div>
       </td>
       <td><strong>Zip-up</strong><br><small>Full-Zip Outerwear Hoodie</small></td>
       <td>Ksh 2200</td>
+      <td><button class="purchase-btn" onclick="startPayment(2200, 'Zip-up')">Buy via M-Pesa</button></td>
     </tr>
+
      <!-- Product 10: Full sets -->
     <tr>
       <td>10</td>
       <td>
         <div class="img-wrapper">
           <img src="WhatsApp Image 2026-02-13 at 10.11.41 AM (1).jpeg" alt="Full setsFront" class="product-img-large">
-          <img src="WhatsApp Image 2026-02-13 at 10.11.37 AM (1).jpeg" alt="Full sets Back" class="product-img-large">
         </div>
       </td>
       <td><strong>Full sets</strong><br><small>Matching Top & Bottom Combo</small></td>
       <td>Ksh 3200</td>
+      <td><button class="purchase-btn" onclick="startPayment(3200, 'Full sets')">Buy via M-Pesa</button></td>
     </tr>
+
      <!-- Product 11: Vests -->
     <tr>
       <td>11</td>
       <td>
         <div class="img-wrapper">
           <img src="WhatsApp Image 2026-02-16 at 2.09.11 PM.jpeg" alt="Vests Front" class="product-img-large">
-          <img src="YOUR_SECOND_IMAGE_HERE.jpg" alt="Vests Back" class="product-img-large">
         </div>
       </td>
       <td><strong>Vests</strong><br><small>Breathable Ribbed Cotton</small></td>
       <td>Ksh 1200</td>
+      <td><button class="purchase-btn" onclick="startPayment(1200, 'Vests')">Buy via M-Pesa</button></td>
     </tr>
   </tbody>
 </table>
 
-  <td>
-        <!-- The Purchase Button -->
-        <button class="purchase-btn" onclick="startPayment(1350, 'Jorts')">
-          <img src="https://upload.wikimedia.org" class="mpesa-logo" alt="">
-          Click to Purchase
-        </button>
-      </td>
-      <script src="script.js"></script>
+    <script src="script.js"></script> 
 </body>
 </html>

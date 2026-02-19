@@ -1,77 +1,82 @@
-// Mpesa logic 
-const endpoint = "https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest";
-const authHeader = `Bearer ${YOUR_ACCESS_TOKEN}`;
-
-const payload = {
-    "BusinessShortCode": "0755325194", // Your Paybill/Till number
-    "Password": "GENERATED_PASSWORD",
-    "Timestamp": "20260216235000",
-    "TransactionType": "CustomerPayBillOnline",
-    "Amount": req.body.amount,
-    "PartyA": req.body.phone,
-    "PartyB": "174379",
-    "PhoneNumber": req.body.phone,
-    "CallBackURL": "https://yourdomain.com",
-    "AccountReference": req.body.itemName,
-    "TransactionDesc": "Payment for " + req.body.itemName
-};
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    const reviewForm = document.getElementById('reviewForm');
-    const reviewGrid = document.querySelector('.review-grid');
-
-    // 1. Load existing reviews from LocalStorage on page load
-    const displayReviews = () => {
-        const savedReviews = JSON.parse(localStorage.getItem('userReviews')) || [];
-        // Optional: Keep your original hardcoded reviews or clear and show only saved ones
-        // reviewGrid.innerHTML = ''; 
-        
-        savedReviews.forEach(rev => {
-            const card = document.createElement('div');
-            card.className = 'review-card';
-            card.innerHTML = `
-                <div class="stars">★★★★★</div>
-                <p>"${rev.text}"</p>
-                <strong>— ${rev.name}</strong>
-            `;
-            reviewGrid.appendChild(card);
-        });
-    };
-
-    displayReviews();
-
-    // 2. Handle new review submission
-    reviewForm.addEventListener('submit', (e) => {
-        e.preventDefault(); // Stop page refresh
-
-        const nameInput = reviewForm.querySelector('input[type="text"]');
-        const textInput = reviewForm.querySelector('textarea');
-
-        const newReview = {
-            name: nameInput.value,
-            text: textInput.value,
-            date: new Date().toLocaleDateString()
-        };
-
-        // 3. Save to LocalStorage array
-        const existingReviews = JSON.parse(localStorage.getItem('userReviews')) || [];
-        existingReviews.push(newReview);
-        localStorage.setItem('userReviews', JSON.stringify(existingReviews));
-
-        // 4. Update the UI immediately
-        const newCard = document.createElement('div');
-        newCard.className = 'review-card';
-        newCard.innerHTML = `
-            <div class="stars">★★★★★</div>
-            <p>"${newReview.text}"</p>
-            <strong>— ${newReview.name}</strong>
+// --- 1. LOCAL STORAGE & DATA PERSISTENCE ---
+// Function to load products into the table
+function loadProducts() {
+    const tableBody = document.querySelector('tbody');
+    const storedProducts = JSON.parse(localStorage.getItem('myProducts')) || [];
+    
+    // If we have stored products, we can clear the hardcoded ones or append
+    // For this example, we append stored data to your existing list
+    storedProducts.forEach(product => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${product.id}</td>
+            <td><div class="img-wrapper"><img src="${product.img}" class="product-img-large"></div></td>
+            <td><strong>${product.name}</strong><br><small>${product.desc}</small></td>
+            <td>Ksh ${product.price}</td>
+            <td><button class="purchase-btn" onclick="startPayment(${product.price}, '${product.name}')">Purchase</button></td>
         `;
-        reviewGrid.appendChild(newCard);
-
-        // 5. Reset form and alert user
-        reviewForm.reset();
-        alert('Review Submitted! It is now saved in your browser.');
+        tableBody.appendChild(row);
     });
-});
+}
 
+// --- 2. FORM VALIDATION & ADDING DATA ---
+// This function should be called from your "Add Product" page/form
+function addProduct(event) {
+    event.preventDefault(); // Prevent page reload
+    
+    const id = document.getElementById('prodId').value;
+    const name = document.getElementById('prodName').value;
+    const price = document.getElementById('prodPrice').value;
+    const desc = document.getElementById('prodDesc').value;
+
+    // Simple Validation
+    if (!id || !name || isNaN(price)) {
+        alert("Please enter valid product details!");
+        return;
+    }
+
+    const newProduct = { id, name, price, desc, img: "placeholder.jpg" };
+    
+    let products = JSON.parse(localStorage.getItem('myProducts')) || [];
+    products.push(newProduct);
+    localStorage.setItem('myProducts', JSON.stringify(products));
+    
+    alert("Product added successfully!");
+    window.location.href = "index.html"; // Redirect back to shop
+}
+
+// --- 3. EVENT HANDLING: MPESA PAYMENT SIMULATION ---
+function startPayment(amount, productName) {
+    // Prompt for Phone Number
+    const phoneNumber = prompt(`You are buying ${productName} for Ksh ${amount}. Enter your M-Pesa number (e.g., 0712345678):`);
+
+    // Validation
+    const phoneRegex = /^(07|01|254)\d{8}$/;
+    
+    if (!phoneNumber) {
+        return; // User cancelled
+    }
+
+    if (!phoneRegex.test(phoneNumber)) {
+        alert("Error: Invalid M-Pesa number. Please use 07xx... format.");
+        return;
+    }
+
+    // Dynamic UI feedback
+    const btn = event.currentTarget;
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = "Processing...";
+
+    // Simulating API Latency
+    setTimeout(() => {
+        alert(`STK Push sent to ${phoneNumber}. Please enter your PIN on your phone to authorize Ksh ${amount}.`);
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+    }, 1500);
+}
+
+// Initialize page
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.querySelector('tbody')) loadProducts();
+});
