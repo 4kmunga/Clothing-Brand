@@ -1,11 +1,10 @@
-// --- 1. LOCAL STORAGE & DATA PERSISTENCE ---
+ // --- 1.Local storage ---
 // Function to load products into the table
 function loadProducts() {
     const tableBody = document.querySelector('tbody');
     const storedProducts = JSON.parse(localStorage.getItem('myProducts')) || [];
     
-    // If we have stored products, we can clear the hardcoded ones or append
-    // For this example, we append stored data to your existing list
+    // If we have stored products,we add stored data to your existing list
     storedProducts.forEach(product => {
         const row = document.createElement('tr');
         row.innerHTML = `
@@ -20,7 +19,7 @@ function loadProducts() {
 }
 
 // --- 2. FORM VALIDATION & ADDING DATA ---
-// This function should be called from your "Add Product" page/form
+
 function addProduct(event) {
     event.preventDefault(); // Prevent page reload
     
